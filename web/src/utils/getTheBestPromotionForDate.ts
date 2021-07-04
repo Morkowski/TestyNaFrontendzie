@@ -4,11 +4,12 @@ export const getTheBestPromotionForDate = (
   date: Date,
   promotions: Promotion[]
 ): Promotion | null => {
+
   const currentPromotions = promotions.filter(
-    (prom: Promotion) => prom.dateStart < date && prom.dateEnd > date
+    (prom: Promotion) => date >= prom.dateStart && date <= prom.dateEnd
   );
 
-  if (!currentPromotions) {
+  if (!currentPromotions.length) {
     return null;
   }
 
